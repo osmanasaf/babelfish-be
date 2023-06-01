@@ -4,14 +4,15 @@ import com.codefirst.babelfish.controller.base.BaseController;
 import com.codefirst.babelfish.model.Project;
 import com.codefirst.babelfish.repository.ProjectRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/project")
 public class ProjectController extends BaseController<Project, Long, ProjectRepository> {
 
     public ProjectController(ProjectRepository projectRepository) {
         super(projectRepository);
     }
-
 }

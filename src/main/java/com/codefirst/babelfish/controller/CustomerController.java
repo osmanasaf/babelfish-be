@@ -5,8 +5,9 @@ import com.codefirst.babelfish.model.Customer;
 import com.codefirst.babelfish.repository.CustomerRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/customer")
 public class CustomerController extends BaseController<Customer, Long, CustomerRepository> {
 

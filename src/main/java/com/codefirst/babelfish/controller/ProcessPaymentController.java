@@ -5,8 +5,9 @@ import com.codefirst.babelfish.model.ProcessPayment;
 import com.codefirst.babelfish.repository.ProcessPaymentRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/process-payment")
 public class ProcessPaymentController extends BaseController<ProcessPayment, Long, ProcessPaymentRepository> {
 

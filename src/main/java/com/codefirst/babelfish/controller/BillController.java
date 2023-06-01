@@ -5,8 +5,9 @@ import com.codefirst.babelfish.model.Bill;
 import com.codefirst.babelfish.repository.BillRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/bill")
 public class BillController extends BaseController<Bill, Long, BillRepository> {
 
