@@ -2,17 +2,16 @@ package com.codefirst.babelfish.controller;
 
 import com.codefirst.babelfish.controller.base.BaseController;
 import com.codefirst.babelfish.model.Bill;
-import com.codefirst.babelfish.repository.BillRepository;
-import org.springframework.stereotype.Controller;
+import com.codefirst.babelfish.service.BillService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/bill")
-public class BillController extends BaseController<Bill, Long, BillRepository> {
+public class BillController extends BaseController<Bill, Long, BillService> {
 
-    public BillController(BillRepository billRepository) {
-        super(billRepository);
+    public BillController(BillService billService) {
+        super(billService);
     }
 
 }

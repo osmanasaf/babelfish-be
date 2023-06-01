@@ -1,12 +1,11 @@
 package com.codefirst.babelfish.service.base;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.Optional;
 
-@Service
 public abstract class BaseService<T, ID extends Serializable, R extends JpaRepository<T, ID>> {
 
     protected final R repository;
@@ -27,8 +26,14 @@ public abstract class BaseService<T, ID extends Serializable, R extends JpaRepos
         return repository.save(entity);
     }
 
-    public T update(T entity) {
-        return repository.save(entity);
+    public T update(ID id, T entity) {
+        Optional<T> existingEntity = repository.findById(id);
+        if (existingEntity.isPresent()) {
+            T updatedEntity = repository.save(entity);
+            return updatedEntity;
+        } else {
+            throw new EntityNotFoundException("Entity with ID " + id + " not found.");
+        }
     }
 
     public void deleteById(ID id) {
