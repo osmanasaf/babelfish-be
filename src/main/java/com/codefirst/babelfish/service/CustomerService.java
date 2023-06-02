@@ -15,4 +15,26 @@ public class CustomerService extends BaseService<Customer, Long, CustomerReposit
         this.customerRepository = customerRepository;
     }
 
+    @Override
+    public Customer create(Customer entity) {
+        String companyName = entity.getCompanyName();
+        if (existsByCompanyName(companyName)) {
+            throw new IllegalArgumentException("Bu isimde bir müşteri zaten mevcut: " + companyName);
+        }
+        return super.create(entity);
+    }
+
+    @Override
+    public Customer update(Long id, Customer entity) {
+        String companyName = entity.getCompanyName();
+        if (existsByCompanyName(companyName)) {
+            throw new IllegalArgumentException("Bu isimde bir müşteri zaten mevcut: " + companyName);
+        }
+        return super.update(id, entity);
+    }
+
+    public boolean existsByCompanyName(String companyName) {
+        return customerRepository.existsByCompanyName(companyName);
+    }
+
 }
