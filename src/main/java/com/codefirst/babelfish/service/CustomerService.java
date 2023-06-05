@@ -8,6 +8,8 @@ import com.codefirst.babelfish.service.base.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CustomerService extends BaseService<Customer, Long, CustomerRepository> {
 
@@ -32,7 +34,11 @@ public class CustomerService extends BaseService<Customer, Long, CustomerReposit
 
     public Customer update(Long id, CustomerDto dto) {
         String companyName = dto.getCompanyName();
-        if (existsByCompanyName(companyName)) {
+        Optional<Customer> customerById = repository.findById(id);
+        if(!customerById.isPresent()){
+            throw new IllegalArgumentException("Bu id de bir müşteri bulunamadı: " + id);
+        }
+        if (!customerById.get().getCompanyName().equals(companyName) && existsByCompanyName(companyName)) {
             throw new IllegalArgumentException("Bu isimde bir müşteri zaten mevcut: " + companyName);
         }
         Customer entity = customerMapper.toEntity(dto);
