@@ -35,7 +35,7 @@ public class CustomerService extends BaseService<Customer, Long, CustomerReposit
     public Customer update(Long id, CustomerDto dto) {
         String companyName = dto.getCompanyName();
         Optional<Customer> customerById = repository.findById(id);
-        if(!customerById.isPresent()){
+        if(customerById.isEmpty()){
             throw new IllegalArgumentException("Bu id de bir müşteri bulunamadı: " + id);
         }
         if (!customerById.get().getCompanyName().equals(companyName) && existsByCompanyName(companyName)) {
