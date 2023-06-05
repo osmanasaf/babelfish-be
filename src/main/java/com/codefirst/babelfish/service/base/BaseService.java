@@ -1,5 +1,7 @@
 package com.codefirst.babelfish.service.base;
 
+import com.codefirst.babelfish.dto.CustomerDto;
+import com.codefirst.babelfish.model.Customer;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,6 +1,7 @@
 package com.codefirst.babelfish.controller;
 
 import com.codefirst.babelfish.controller.base.BaseController;
+import com.codefirst.babelfish.dto.CustomerDto;
 import com.codefirst.babelfish.model.Customer;
 import com.codefirst.babelfish.repository.CustomerRepository;
 import com.codefirst.babelfish.service.CustomerService;
@@ -17,17 +18,15 @@ public class CustomerController extends BaseController<Customer, Long, CustomerS
         super(customerService);
     }
 
-    @Override
     @PostMapping
-    public ResponseEntity<Customer> create(@RequestBody Customer entity) {
-        Customer createdCustomer = service.create(entity);
+    public ResponseEntity<Customer> create(@RequestBody CustomerDto dto) {
+        Customer createdCustomer = service.create(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
     }
 
-    @Override
     @PutMapping("/{id}")
-    public ResponseEntity<Customer> update(@PathVariable Long id, @RequestBody Customer entity) {
-        Customer updatedCustomer = service.update(id, entity);
+    public ResponseEntity<Customer> update(@PathVariable Long id, @RequestBody CustomerDto dto) {
+        Customer updatedCustomer = service.update(id, dto);
         return ResponseEntity.ok(updatedCustomer);
     }
 

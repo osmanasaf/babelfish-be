@@ -27,23 +27,6 @@ public abstract class BaseController<T, ID extends Serializable, S extends BaseS
         return service.getAll();
     }
 
-    @PostMapping
-    public ResponseEntity<T> create(@RequestBody T entity) {
-        T createdEntity = service.create(entity);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdEntity);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<T> update(@PathVariable ID id, @RequestBody T entity) {
-        Optional<T> existingEntity = service.getById(id);
-        if (existingEntity.isPresent()) {
-            entity = service.update(id, entity);
-            return ResponseEntity.ok(entity);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable ID id) {
         Optional<T> entity = service.getById(id);
